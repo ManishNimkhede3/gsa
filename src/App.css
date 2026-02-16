@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+  /* Light Theme Variables (Default) */
+  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  --secondary-gradient: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+  --accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+
+  --primary-blue: #1d4ed8;
+  --primary-blue-light: #3b82f6;
+  --primary-blue-dark: #1e3a8a;
+
+  --accent-gold: #f59e0b;
+  --accent-red: #dc2626;
+
+  /* Light BG */
+  --dark-bg: #f8fafc;
+  --dark-bg-secondary: #ffffff;
+
+  /* Dark Text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  /* Light Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+body.dark {
+  /* Dark Theme Variables */
+  --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  --secondary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+  --primary-blue: #1e40af;
+
+  --dark-bg: #0f172a;
+  --dark-bg-secondary: #1e293b;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue-light);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform var(--transition-normal);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  /* Will need adjustment for light mode manual override or text color */
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+}
+
+/* Fix btn-secondary text color for light mode */
+body:not(.dark) .btn-secondary {
+  color: var(--primary-blue-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-gold);
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(245, 158, 11, 0.4);
+}
+
+/* Card Styles - Default (Light) */
+.card,
+.spec-card,
+.coverage-card,
+.service-card,
+.contact-info,
+.contact-form-container,
+.timeline-item,
+.strength-card,
+.leader-quote,
+.info-quote {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark Mode Card Overrides */
+body.dark .card,
+body.dark .spec-card,
+body.dark .coverage-card,
+body.dark .service-card,
+body.dark .contact-info,
+body.dark .contact-form-container,
+body.dark .timeline-item,
+body.dark .strength-card,
+body.dark .leader-quote,
+body.dark .info-quote {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  /* Reset shadow for dark */
+}
+
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations... (Keep same) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .btn {
+    padding: 0.875rem 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Component specifics for Dark Mode that were overrides */
+
+/* Hero Stats - Default (Light) */
+.hero-stats {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Stats - Dark */
+body.dark .hero-stats {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Advantage Items - Default (Light) */
+.advantage-item,
+.values-list {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Advantage Items - Dark */
+body.dark .advantage-item {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.highlight-text {
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--text-primary) !important;
+}
+
+/* Highlight Text - Dark override not strictly needed if vars handle it, but background might need adjustment */
+body.dark .highlight-text {
+  background: rgba(59, 130, 246, 0.05);
+  /* Same essentially */
+}
+
+/* Form inputs - Default (Light) */
+.form-group input,
+.form-group textarea {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--text-primary);
+}
+
+/* Form inputs - Dark */
+body.dark .form-group input,
+body.dark .form-group textarea {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Footer - Default (Light) */
+.footer {
+  background: var(--secondary-gradient);
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Footer - Dark */
+body.dark .footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navbar - Default (Light) */
+.navbar {
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-link {
+  color: #475569;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #0f172a;
+}
+
+.mobile-menu-toggle span {
+  background: #0f172a;
+}
+
+/* Navbar - Dark Overrides */
+body.dark .navbar {
+  background: rgba(15, 23, 42, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark .navbar.scrolled {
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: var(--shadow-md);
+}
+
+body.dark .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark .nav-link:hover,
+body.dark .nav-link.active {
+  color: #ffffff;
+}
+
+body.dark .mobile-menu-toggle span {
+  background: #ffffff;
+}
